@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>SERPENTINE — Worm Arena</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     LOBBY SCREEN
+═══════════════════════════════════════════ -->
+<div id="screen-lobby" class="screen active">
+  <div class="lobby-bg-canvas">
+    <canvas id="bg-canvas"></canvas>
+  </div>
+
+  <div class="lobby-content">
+    <div class="logo-block">
+      <div class="logo-glyph">〜</div>
+      <h1 class="logo-title">SERPENTINE</h1>
+      <p class="logo-sub">Worm Arena · Real-time Multiplayer</p>
+    </div>
+
+    <div class="lobby-card">
+      <div class="input-row">
+        <label for="player-name">Your Name</label>
+        <input id="player-name" type="text" maxlength="20" placeholder="Enter nickname…" autocomplete="off" />
+      </div>
+
+      <div class="skin-picker">
+        <label>Choose Your Skin</label>
+        <div id="skin-grid" class="skin-grid"></div>
+      </div>
+
+      <button id="btn-play" class="btn-primary">
+        <span class="btn-icon">▶</span> Enter Arena
+      </button>
+
+      <div class="controls-hint">
+        <span>🖱 Mouse / 👆 Touch to steer</span>
+        <span>Hold <kbd>SPACE</kbd> or <kbd>LMB</kbd> to boost</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     GAME SCREEN
+═══════════════════════════════════════════ -->
+<div id="screen-game" class="screen">
+  <canvas id="game-canvas"></canvas>
+
+  <!-- HUD -->
+  <div id="hud">
+    <div id="hud-left">
+      <div class="hud-mass-wrap">
+        <div class="hud-label">MASS</div>
+        <div id="hud-mass" class="hud-value">0</div>
+      </div>
+      <div class="hud-mass-wrap">
+        <div class="hud-label">RANK</div>
+        <div id="hud-rank" class="hud-value">#—</div>
+      </div>
+    </div>
+
+    <div id="hud-center">
+      <div id="boost-bar-wrap">
+        <div class="hud-label">BOOST</div>
+        <div class="boost-track"><div id="boost-bar"></div></div>
+      </div>
+    </div>
+
+    <div id="hud-right">
+      <div class="leaderboard-panel">
+        <div class="lb-title">LEADERBOARD</div>
+        <ol id="lb-list"></ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- Minimap -->
+  <canvas id="minimap" width="140" height="140"></canvas>
+
+  <!-- Boost button (mobile) -->
+  <button id="mobile-boost" class="mobile-boost-btn" aria-label="Boost">⚡</button>
+
+  <!-- Ping indicator -->
+  <div id="ping-indicator">● LIVE</div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     DEATH SCREEN
+═══════════════════════════════════════════ -->
+<div id="screen-death" class="screen">
+  <div class="death-content">
+    <div class="death-icon">💀</div>
+    <h2 class="death-title">ELIMINATED</h2>
+    <p class="death-killer" id="death-killer-text"></p>
+
+    <div class="death-stats">
+      <div class="stat-block">
+        <div class="stat-label">SCORE</div>
+        <div class="stat-value" id="death-score">0</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-label">SURVIVED</div>
+        <div class="stat-value" id="death-survival">0s</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-label">RANK</div>
+        <div class="stat-value" id="death-rank">#1</div>
+      </div>
+    </div>
+
+    <button id="btn-respawn" class="btn-primary">⟳ Play Again</button>
+    <button id="btn-lobby"   class="btn-secondary">⬅ Lobby</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CONNECTION ERROR
+═══════════════════════════════════════════ -->
+<div id="screen-error" class="screen">
+  <div class="error-content">
+    <div class="error-icon">⚡</div>
+    <h2>Connection Lost</h2>
+    <p>Could not connect to the game server.<br/>Make sure the server is running.</p>
+    <button id="btn-retry" class="btn-primary">Retry Connection</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════ -->
+<script src="js/audio.js"></script>
+<script src="js/particles.js"></script>
+<script src="js/renderer.js"></script>
+<script src="js/input.js"></script>
+<script src="js/hud.js"></script>
+<script src="js/network.js"></script>
+<script src="js/lobby.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
